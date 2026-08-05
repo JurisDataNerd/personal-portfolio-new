@@ -5,25 +5,29 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { site } from "@/data/site";
 import { TechIcon } from "./TechIcon";
+import Typewriter from "./Typewriter";
+import { useState } from "react";
 
 export function Projects() {
   const { projects } = site;
+  const [playKey, setPlayKey] = useState<number>(0);
 
   return (
     <section id="projects" className="relative py-20 md:py-32">
       {/* Animated Section Heading */}
       <div className="container mb-16 flex flex-wrap items-end justify-between gap-4 md:mb-24">
-        <div className="overflow-hidden">
-          <motion.h2
-            className="font-display text-[clamp(2.5rem,7vw,6.5rem)] font-bold uppercase leading-none tracking-tight text-fg"
-            initial={{ y: "100%" }}
-            whileInView={{ y: "0%" }}
-            viewport={{ once: true, margin: "-10% 0px" }}
-            transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
-          >
-            {projects.title}
-          </motion.h2>
-        </div>
+          <div className="overflow-hidden">
+            <motion.h2
+              className="font-display text-[clamp(2.5rem,7vw,6.5rem)] font-bold uppercase leading-none tracking-tight text-fg"
+              initial={{ y: "100%" }}
+              whileInView={{ y: "0%" }}
+              viewport={{ once: false, margin: "-10% 0px" }}
+              transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+              onViewportEnter={() => setPlayKey((k) => k + 1)}
+            >
+              <Typewriter text={projects.title} playKey={playKey} fast />
+            </motion.h2>
+          </div>
         <motion.p
           className="text-xs uppercase tracking-[0.2em] text-fg-subtle sm:text-sm font-medium"
           initial={{ opacity: 0, y: 12 }}
