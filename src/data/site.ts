@@ -173,6 +173,43 @@ export const site = {
           year: "2025",
           role: "Fullstack Development",
           href: "/projects/medskill-lms",
+        }
+      },
+      {
+        id: "04",
+        slug: "agrinuklir",
+        role: "Project Manager",
+        year: "2025",
+        status: "Completed",
+        title: "AgriNuklir",
+        subtitle: "Smart Farming Education with Nuclear Technology",
+        description:
+          "A web-based educational platform designed to introduce the peaceful use of nuclear technology in agriculture for students, young farmers, and rural communities.",
+        href: "/projects/agrinuklir",
+        image: "/images/agrinuklir-1.png",
+        imageAlt: "AgriNuklir Platform Showcase",
+        gallery: [
+          "/images/agrinuklir-1.png",
+          "/images/agrinuklir-2.png",
+          "/images/agrinuklir-3.png",
+          "/images/agrinuklir-4.png",
+        ],
+        tags: ["React", "Vite", "Supabase", "Netlify"],
+        fullDescription:
+          "Developed in association with Universitas Nahdlatul Ulama Yogyakarta (UNU Jogja), AgriNuklir aims to close the literacy gap and reduce misconceptions regarding nuclear technology in Indonesia. The platform empowers users with interactive learning tools to adopt science-based smart farming, successfully earning a spot as a Top 13 National Finalist at Global Hackatom Indonesia 2025.",
+        features: [
+          "Structured learning modules with localized nuclear-agriculture content",
+          "Rule-based AI chatbot to answer questions interactively",
+          "Hands-on simulations exploring nuclear techniques in farming scenarios",
+          "Score-based quizzes, certificates, and community discussion forums",
+        ],
+        githubUrl: "https://github.com/JurisDataNerd", // Ubah jika ada URL repository spesifik
+        liveUrl: "https://agrinuklir.netlify.app", // Tambahkan URL live jika sudah di-deploy
+        nextProject: {
+          title: "Medskill Indonesia LMS",
+          year: "2025",
+          role: "Fullstack Developer",
+          href: "/projects/medskill-lms",
         },
       },
     ] as ProjectItem[],
