@@ -99,7 +99,7 @@ export const site = {
         nextProject: {
           title: "Praxis by Medskill",
           year: "2025",
-          role: "Fullstack Simulation & Interactive UI",
+          role: "OSCE Simulation Platform",
           href: "/projects/praxis-osce",
         },
       },
@@ -169,10 +169,10 @@ export const site = {
         githubUrl: "https://github.com/JurisDataNerd/frontend_chainaid_web3",
         liveUrl: "https://chainaidsepolia.vercel.app/",
         nextProject: {
-          title: "Medskill Indonesia LMS",
+          title: "Agrinuklir Smart Farming Education",
           year: "2025",
-          role: "Fullstack Development",
-          href: "/projects/medskill-lms",
+          role: "Project Manager",
+          href: "/projects/agrinuklir",
         }
       },
       {
@@ -184,7 +184,7 @@ export const site = {
         title: "AgriNuklir",
         subtitle: "Smart Farming Education with Nuclear Technology",
         description:
-          "A web-based educational platform designed to introduce the peaceful use of nuclear technology in agriculture for students, young farmers, and rural communities.",
+          "A web-based educational platform designed to introduce the peaceful use of nuclear technology in agriculture for students, young farmers, and rural communities. - Awarded Top 13 National Finalist at Global Hackatom Indonesia 2025.",
         href: "/projects/agrinuklir",
         image: "/images/agrinuklir-1.png",
         imageAlt: "AgriNuklir Platform Showcase",
@@ -205,6 +205,79 @@ export const site = {
         ],
         githubUrl: "https://github.com/JurisDataNerd", // Ubah jika ada URL repository spesifik
         liveUrl: "https://agrinuklir.netlify.app", // Tambahkan URL live jika sudah di-deploy
+        nextProject: {
+          title: "Sistem Informasi Manajemen Kos (SISEMOK)",
+          year: "2025",
+          role: "Fullstack Developer",
+          href: "/projects/sisemok",
+        },
+      },
+      {
+        id: "05",
+        slug: "sisemok",
+        role: "Fullstack Developer",
+        year: "2025",
+        status: "Completed",
+        title: "Sistem Informasi Manajemen Kos (SISEMOK)",
+        subtitle: "Web-based Boarding House Management System",
+        description:
+          "A comprehensive web application designed to streamline the management of boarding houses, including tenant tracking, payment processing, and maintenance requests. - Awarded 1st Place in the 2025 Informatics Studios 2.0 Final Project Competition at Universitas Nahdlatul Ulama Yogyakarta (UNU Jogja).  ",
+        href: "/projects/sisemok",
+        image: "/images/sisemok-1.png",
+        imageAlt: "SISEMOK Platform Showcase",
+        gallery: [
+          "/images/sisemok-1.png",
+          "/images/sisemok-2.png"
+        ],
+        tags: ["PHP", "MySQL", "TailwindCSS"],
+        fullDescription:
+          "SISEMOK is a web-based application that simplifies the management of boarding houses. It allows landlords to efficiently track tenants, manage payments, and handle maintenance requests, all in one platform. The system is designed to improve operational efficiency and enhance the tenant experience. Awarded 1st Place in the 2025 Informatics Studios 2.0 Final Project Competition at Universitas Nahdlatul Ulama Yogyakarta (UNU Jogja).",
+        features: [
+          "Tenant management with detailed profiles and history",
+          "Automated payment tracking and invoicing system",
+          "Maintenance request submission and tracking",
+          "User-friendly dashboard for landlords and tenants",
+        ],
+        githubUrl: "https://github.com/JurisDataNerd/SiSemok"
+      }, 
+      {
+        id: "06",
+        slug: "santri-seeds-of-hope",
+        role: "Game Developer",
+        year: "2025",
+        status: "Completed",
+        title: "Santri : Seeds of Hope",
+        subtitle: "A Digital Behavioral Intervention for SDG 12",
+        description:
+          "An interactive RPG simulation designed as a behaviour-changing tool for the Nahdlatul Ulama ecosystem. Presented via a project video (YouTube).",
+        href: "/projects/santri-seeds-of-hope",
+        image: "/images/santri-1.png",
+        imageAlt: "SANTRI: The Seeds of Hope Video Preview",
+        gallery: ["/images/santri-1.png",
+          "/images/santri-2.png",
+          "/images/santri-3.png",
+          "/images/santri-4.png",
+        ],
+        tags: ["Game Design", "Behavioral Intervention", "SDG 12", "Replit AI"],
+        fullDescription:
+          `"SANTRI: The Seeds of Hope" is an interactive RPG simulation designed as a "behavior-changing tool" for the 150-million-member Nahdlatul Ulama (NU) ecosystem. Developed using Replit AI in an agile methodology, the game bridges traditional Pesantren values with modern environmentalism.
+
+      Innovation & Features:
+      - Invisible Learning: Players master complex UN frameworks through localized RPG diplomacy.
+      - Green Ledger Mechanic: Success is achieved by presenting real-world evidence and blueprints to community leaders.
+      - The Final Commitment: A groundbreaking fourth-wall-breaking finale where players must type a tangible, real-world environmental pledge to complete their journey.
+
+      SDG 12 (11/11) Alignment:
+      We have meticulously mapped and embedded all 11 sub-targets of SDG 12 (Responsible Consumption & Production): 12.1 - 12.8 cover SCP policies, resource management, food waste, and education. 12.a - 12.c target tech transfer, sustainable tourism, and fossil-fuel subsidy rationalization.`,
+        features: [
+          "Interactive RPG simulation blending local culture and environmental education",
+          "Invisible-learning design to teach UN frameworks through gameplay",
+          "Green Ledger mechanic requiring real-world evidence submissions",
+          "Final pledge mechanic that asks players for a tangible environmental commitment",
+          "Project awarded Top 10 Finalist and Special Jury Recognition at QS Impact Youth Summit 2025",
+        ],
+        // No source code — deliverable is a project video on YouTube.
+        liveUrl: "https://www.youtube.com/watch?v=P49iPaS8Phw",
         nextProject: {
           title: "Medskill Indonesia LMS",
           year: "2025",

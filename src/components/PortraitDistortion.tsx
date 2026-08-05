@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useRef } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 
@@ -36,20 +37,18 @@ export function PortraitDistortion({ src, alt }: { src: string; alt: string }) {
             ref={ref}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
-            // overflow-visible agar foto bisa meluber
             className="group relative h-full w-full overflow-visible flex items-end justify-center"
         >
-            <motion.img
-                src={src}
-                alt={alt}
-                style={{ x: translateX, y: translateY }}
-                // INI KUNCI UTAMA:
-                // h-[70vh] sm:h-[80vh] md:h-[90vh] -> Tinggi gambar paksa gede, beda tiap ukuran layar
-                // w-auto -> Lebar otomatis biar gak gepeng
-                // origin-bottom -> Hover scale dari bawah ke atas
-                // max-w-none -> Menghapus limit lebar bawaan gambar/browser
-                className="h-[70vh] sm:h-[80vh] md:h-[90vh] w-auto max-w-none object-contain object-bottom origin-bottom transition-transform duration-500 ease-out group-hover:scale-[1.03]"
-            />
+            <motion.div style={{ x: translateX, y: translateY }} className="relative h-full w-full">
+                <Image
+                    src={src}
+                    alt={alt}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 75vw, 600px"
+                    className="object-contain object-bottom origin-bottom transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                    priority
+                />
+            </motion.div>
         </div>
     );
 }
