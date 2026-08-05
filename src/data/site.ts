@@ -150,9 +150,13 @@ export const site = {
         description:
           "A decentralized Web3 donation platform ensuring 100% financial transparency using smart contracts and real-time transaction tracking.",
         href: "/projects/chainaid",
-        image: "/images/chainaid.png",
+        image: "/images/chainaid-1.png",
         imageAlt: "ChainAid Web3 Donation Showcase",
-        gallery: ["/images/chainaid.png", "/images/project-ecommerce.png"],
+        gallery: ["/images/chainaid-1.png",
+          "/images/chainaid-2.png",
+          "/images/chainaid-3.png",
+          "/images/chainaid-4.png",
+        ],
         tags: ["Next.js", "Solidity", "Ethers.js / Viem", "TailwindCSS", "Framer Motion"],
         fullDescription:
           "ChainAid Web3 Donation provides an immutable, transparent ledger for global charitable causes. Donors connect Web3 wallets (MetaMask, WalletConnect) to stream crypto contributions directly to audited smart contract vaults with real-time distribution tracking.",
@@ -162,8 +166,8 @@ export const site = {
           "Transparent fund allocation breakdown (Distributed vs. Reserve)",
           "Instant campaign creation with verified multisig governance",
         ],
-        githubUrl: "https://github.com/fauzanarisanto",
-        liveUrl: "https://chainaid.io",
+        githubUrl: "https://github.com/JurisDataNerd/frontend_chainaid_web3",
+        liveUrl: "https://chainaidsepolia.vercel.app/",
         nextProject: {
           title: "Medskill Indonesia LMS",
           year: "2025",
