@@ -1,36 +1,97 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Fauzan Arisanto — Portfolio
 
-## Getting Started
+Personal portfolio inspired by the clean, modern aesthetic of [russellnumo.nl](https://www.russellnumo.nl/).
 
-First, run the development server:
+**Fauzan Arisanto** · Fullstack Developer
+
+## Stack
+
+- [Next.js](https://nextjs.org/) (App Router)
+- TypeScript
+- Tailwind CSS v4
+- Framer Motion
+
+## Getting started
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build   # production build
+npm start       # run production server
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Customize your content
 
-## Learn More
+Almost everything is editable in one place:
 
-To learn more about Next.js, take a look at the following resources:
+**[`src/data/site.ts`](src/data/site.ts)**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Field | What it controls |
+| --- | --- |
+| `name`, `shortName`, `lastName` | Header / branding |
+| `title`, `description` | SEO + meta |
+| `location`, `openToWork` | Hero meta row |
+| `email`, `phone`, `socials` | Contact + footer |
+| `marquee` | Large scrolling role titles |
+| `about` | About section copy |
+| `projects.items` | Featured work (title, year, image, link, blurb) |
+| `quote` | Mid-page statement |
+| `services` | Expandable service rows |
+| `portrait` | Hero portrait path |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Images
 
-## Deploy on Vercel
+Replace placeholders under `public/images/`:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `portrait.svg` → your photo (`.jpg` / `.webp` recommended)
+- `project-1.svg`, `project-2.svg` → project covers
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Then update the paths in `src/data/site.ts`.
+
+### Adding a project
+
+```ts
+{
+  id: "03",
+  role: "Fullstack Development",
+  year: "2026",
+  title: "My Project",
+  subtitle: "Optional label",
+  description: "Short project description…",
+  href: "https://…",
+  image: "/images/my-project.jpg",
+  imageAlt: "My Project cover",
+}
+```
+
+## Project structure
+
+```
+src/
+  app/           # layout, page, global styles
+  components/    # Header, Hero, About, Projects, Quote, Services, Contact…
+  data/site.ts   # ← edit me
+  hooks/
+public/images/   # portrait + project covers
+```
+
+## Design notes
+
+The layout mirrors the reference site’s structure:
+
+1. Fixed nav + mobile menu  
+2. Full-viewport hero with opposing marquees + centered portrait  
+3. About, featured work, statement quote, services accordion, contact/footer  
+4. Scroll progress indicator (bottom-right)
+
+Typography uses free Google Fonts close to the original feel:
+
+- **Bebas Neue** — condensed display (marquee / big titles)  
+- **DM Sans** — body UI text  
+
+Background: `#0e0e0e`.
