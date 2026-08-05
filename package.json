@@ -1,5 +1,5 @@
 {
-  "name": "portfolio-temp",
+  "name": "fauzan-portfolio",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,7 +9,8 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "next": "16.2.12",
+    "framer-motion": "^12.43.0",
+    "next": "^16.3.0",
     "react": "19.2.4",
     "react-dom": "19.2.4"
   },
@@ -22,5 +23,6 @@
     "eslint-config-next": "16.2.12",
     "tailwindcss": "^4",
     "typescript": "^5"
-  }
+  },
+  "description": "Personal portfolio of Fauzan Arisanto — Fullstack Developer"
 }
