@@ -52,7 +52,7 @@ export const site = {
     { index: "03", label: "Contact", href: "/#contact" },
   ],
   /** Hero marquee lines — large scrolling role titles */
-  marquee: ["Fullstack developer", "Software engineer", "Vibe coder"],
+  marquee: ["Fullstack developer", "Software engineer", "Information & Technology enthusiast"],
   about: {
     index: "(01)",
     title: "About",
