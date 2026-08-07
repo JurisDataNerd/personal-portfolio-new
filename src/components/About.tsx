@@ -1,7 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { site } from "@/data/site";
+import Typewriter from "./Typewriter";
 
 const fadeUp = {
   initial: { opacity: 0, y: 32 },
@@ -12,24 +14,29 @@ const fadeUp = {
 
 export function About() {
   const { about } = site;
+  const [playKey, setPlayKey] = useState(0);
 
   return (
     <section id="about" className="relative py-20 md:py-28">
       <div className="container">
-        <div className="mb-10 flex items-center justify-between border-b border-line pb-4 md:mb-16 md:pb-5">
-          <p className="text-xs uppercase tracking-[0.2em] text-fg-muted sm:text-sm">
-            {about.index}
-          </p>
+        <div className="mb-10 border-b border-line pb-4 md:mb-14" />
+
+
+        <div className="overflow-hidden mb-10 md:mb-14">
+          <motion.h2
+            className="font-body text-[clamp(2rem,6vw+1rem,5.5rem)] font-bold uppercase leading-[1.15] tracking-tight md:leading-[1.1]"
+            initial={{ y: "100%" }}
+            whileInView={{ y: "0%" }}
+            viewport={{ once: false, margin: "-10% 0px" }}
+            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+            onViewportEnter={() => setPlayKey((k) => k + 1)}
+          >
+            <Typewriter text={about.title} playKey={playKey} fast />
+          </motion.h2>
         </div>
 
-        <motion.h2
-          className="mb-10 font-body text-[clamp(2rem,6vw+1rem,5.5rem)] font-bold uppercase leading-[1.15] tracking-tight md:mb-14 md:leading-[1.1]"
-          {...fadeUp}
-        >
-          {about.title}
-        </motion.h2>
-
         <div className="grid gap-8 md:grid-cols-12 md:gap-10">
+
           {about.paragraphs.map((p, i) => (
             <motion.p
               key={i}

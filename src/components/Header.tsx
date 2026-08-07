@@ -50,11 +50,8 @@ export function Header() {
               <a
                 key={item.href}
                 href={item.href}
-                className="group flex items-baseline gap-2 text-sm uppercase tracking-[0.16em] text-fg"
+                className="group flex items-baseline text-sm uppercase tracking-[0.16em] text-fg"
               >
-                <span className="text-[0.65rem] text-fg-subtle transition-colors group-hover:text-fg">
-                  {item.index}
-                </span>
                 <span className="link-draw pb-0.5">{item.label}</span>
               </a>
             ))}
@@ -95,15 +92,13 @@ export function Header() {
                   exit={{ opacity: 0, y: 12 }}
                   transition={{ delay: 0.05 * i, duration: 0.4 }}
                 >
-                  <span className="text-xs tracking-[0.2em] text-fg-subtle">
-                    {item.index}
-                  </span>
                   <span className="font-display text-5xl text-fg sm:text-6xl">
                     {item.label}
                   </span>
                 </motion.a>
               ))}
             </nav>
+
           </motion.div>
         )}
       </AnimatePresence>

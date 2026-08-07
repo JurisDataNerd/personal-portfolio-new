@@ -46,12 +46,13 @@ const creamTheme: ThemeConfig = {
 };
 
 const sectionThemes: Record<string, ThemeConfig> = {
-  "sc-hero": darkTheme,
-  "sc-narrative": darkTheme,
+  "sc-hero": lightTheme,
+  "sc-narrative": lightTheme,
   "sc-gallery": lightTheme,
-  "sc-next": creamTheme,
+  "sc-next": lightTheme,
   "sc-contact": darkTheme,
 };
+
 
 function applyTheme(theme: ThemeConfig) {
   const root = document.documentElement;
@@ -64,8 +65,9 @@ function applyTheme(theme: ThemeConfig) {
 
 export function ProjectShowcaseView({ project }: Props) {
   useEffect(() => {
-    // Set dark theme immediately on mount
-    applyTheme(darkTheme);
+    // Set light theme immediately on mount (white at top)
+    applyTheme(lightTheme);
+
 
     const ids = Object.keys(sectionThemes);
     const elements = ids

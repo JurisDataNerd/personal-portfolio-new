@@ -56,9 +56,9 @@ export function Projects() {
               {/* Card Meta Bar */}
               <div className="mb-6 flex flex-wrap items-center justify-between gap-3 border-b border-line pb-4">
                 <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs uppercase tracking-[0.14em] text-fg-muted sm:text-sm font-medium">
-                  <span className="text-fg-subtle font-mono">({project.id})</span>
                   <span>{project.role}</span>
                 </div>
+
                 <span className="text-xs uppercase tracking-[0.14em] text-fg-muted sm:text-sm font-medium">
                   {project.year}
                 </span>

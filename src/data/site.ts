@@ -29,6 +29,23 @@ export interface ProjectItem {
   };
 }
 
+export interface ExperienceItem {
+  id: string;
+  role: string;
+  company: string;
+  period: string;
+  location: string;
+  description: string;
+  logo?: string;
+  tags: string[];
+}
+
+export interface SkillMarqueeItem {
+  name: string;
+  icon: string;
+  category: string;
+}
+
 export const site = {
   name: "Fauzan Arisanto",
   shortName: "Fauzan",
@@ -47,20 +64,61 @@ export const site = {
     { label: "Twitter", href: "https://x.com/darkprince_oo" },
   ],
   nav: [
-    { index: "01", label: "About", href: "/#about" },
-    { index: "02", label: "Projects", href: "/#projects" },
-    { index: "03", label: "Contact", href: "/#contact" },
+    { label: "About", href: "/#about" },
+    { label: "Experience", href: "/#experience" },
+    { label: "Projects", href: "/#projects" },
+    { label: "Skills", href: "/#skills" },
+    { label: "Contact", href: "/#contact" },
   ],
   /** Hero marquee lines — large scrolling role titles */
   marquee: ["Fullstack developer", "Software engineer", "Information & Technology enthusiast"],
   about: {
-    index: "(01)",
     title: "About",
     paragraphs: [
       "I design and develop digital experiences with a focus on craft, motion, and interaction — creating interfaces where every detail is intentional.",
       "Based in Indonesia, I work at the intersection of creativity and engineering. From complex backend architecture to frontend motion polish, I bring ideas to life with meticulous attention to detail.",
     ],
   },
+  experience: {
+    title: "Experiences",
+    items: [
+      {
+        id: "01",
+        role: "Fullstack Web Developer",
+        company: "PT. Gajah Medika Cendekia",
+        period: "September 2025 — Present",
+        location: "Yogyakarta, Indonesia",
+        logo: "/medskill.webp",
+        description:
+          "Developed and scaled MedSkill LMS, a production-ready medical platform currently serving 700+ medical students across Indonesia for UKMPPD exam preparation and equipment rental. Architected a full-stack system using React, Node.js, and Supabase, integrating automated payment gateways and a custom CMS that reduced administrative overhead by 60%, contributing to a 2× increase in student engagement compared to traditional learning methods.",
+        tags: ["React", "Node.js", "Supabase", "PostgreSQL", "Express", "Payment Gateway"],
+      },
+      {
+        id: "02",
+        role: "Laboratory Assistant",
+        company: "UNU Yogyakarta",
+        period: "November 2025 - January 2026",
+        location: "Yogyakarta, Indonesia",
+        logo: "/unu.webp",
+        description:
+          "Lead Assistant for Web Programming & Assistant for Programming Algorithms, mentoring 180+ students across 5 classes in full-stack development and logical problem-solving. Delivered technical instruction in Python (OOP, Data Structures) and Web Technologies (Next.js, Node.js, PostgreSQL) while designing practicum modules and evaluating student final projects.",
+        tags: ["Next.js", "Python", "Node.js", "PostgreSQL", "Data Structures", "Algorithms"],
+      },
+      {
+        id: "03",
+        role: "Cyber Security Track Mentor",
+        company: "Informatics Study Jam — Himatika UNU Jogja",
+        period: "2025",
+        location: "Yogyakarta, Indonesia",
+        logo: "/himatika.webp",
+        description:
+          "Mentored informatics students in the Cyber Security Track during Informatics Study Jam hosted by Himatika UNU Jogja. Delivered hands-on instruction in Linux system administration, command-line utilities, network defense fundamentals, penetration testing concepts, and ethical hacking practices.",
+        tags: ["Cyber Security", "Linux", "Network Security", "Penetration Testing", "Ethical Hacking"],
+      },
+    ] as ExperienceItem[],
+
+  },
+
   projects: {
     title: "Featured Work",
     hint: "[Scroll to explore more]",
@@ -203,8 +261,8 @@ export const site = {
           "Hands-on simulations exploring nuclear techniques in farming scenarios",
           "Score-based quizzes, certificates, and community discussion forums",
         ],
-        githubUrl: "https://github.com/JurisDataNerd", // Ubah jika ada URL repository spesifik
-        liveUrl: "https://agrinuklir.netlify.app", // Tambahkan URL live jika sudah di-deploy
+        githubUrl: "https://github.com/JurisDataNerd",
+        liveUrl: "https://agrinuklir.netlify.app",
         nextProject: {
           title: "Sistem Informasi Manajemen Kos (SISEMOK)",
           year: "2025",
@@ -221,7 +279,7 @@ export const site = {
         title: "Sistem Informasi Manajemen Kos (SISEMOK)",
         subtitle: "Web-based Boarding House Management System",
         description:
-          "A comprehensive web application designed to streamline the management of boarding houses, including tenant tracking, payment processing, and maintenance requests. - Awarded 1st Place in the 2025 Informatics Studios 2.0 Final Project Competition at Universitas Nahdlatul Ulama Yogyakarta (UNU Jogja).  ",
+          "A comprehensive web application designed to streamline the management of boarding houses, including tenant tracking, payment processing, and maintenance requests. - Awarded 1st Place in the 2025 Informatics Studios 2.0 Final Project Competition at Universitas Nahdlatul Ulama Yogyakarta (UNU Jogja).",
         href: "/projects/sisemok",
         image: "/images/sisemok-1.png",
         imageAlt: "SISEMOK Platform Showcase",
@@ -239,7 +297,7 @@ export const site = {
           "User-friendly dashboard for landlords and tenants",
         ],
         githubUrl: "https://github.com/JurisDataNerd/SiSemok"
-      }, 
+      },
       {
         id: "06",
         slug: "santri-seeds-of-hope",
@@ -276,7 +334,6 @@ export const site = {
           "Final pledge mechanic that asks players for a tangible environmental commitment",
           "Project awarded Top 10 Finalist and Special Jury Recognition at QS Impact Youth Summit 2025",
         ],
-        // No source code — deliverable is a project video on YouTube.
         liveUrl: "https://www.youtube.com/watch?v=P49iPaS8Phw",
         nextProject: {
           title: "Medskill Indonesia LMS",
@@ -290,27 +347,44 @@ export const site = {
   quote: {
     text: "The web is loud, and most brands just blend into it. I work across design, frontend, and backend all at once — building digital experiences that feel as sharp as they look. Nothing gets handed off between teams or lost in translation, because I build every layer myself. That's how the identity we create together actually holds up once it's live. If your product deserves to be seen, let's make sure people can't look away.",
   },
-  services: {
-    label: "(Services)",
-    items: [
-      {
-        title: "Frontend",
-        hint: "click me →",
-        details: "React / Next.js · Motion & interactions · Responsive design · Performance",
-      },
-      {
-        title: "Backend",
-        hint: "← click me",
-        details: "APIs · Node.js / Express · PostgreSQL · WebSockets · Auth & Security",
-      },
-      {
-        title: "Fullstack Development",
-        hint: "click me →",
-        details: "End-to-end web apps · System architecture · DevOps · Launch & iteration",
-      },
-    ],
+  skills: {
+    title: "Skills & Technologies",
+    subtitle: "Technologies & Engineering Stack",
+    marquee: [
+      { name: "React", icon: "react", category: "Frontend" },
+      { name: "Next.js", icon: "nextdotjs", category: "Frontend" },
+      { name: "TypeScript", icon: "typescript", category: "Frontend" },
+      { name: "TailwindCSS", icon: "tailwindcss", category: "Frontend" },
+      { name: "Figma", icon: "figma", category: "Design & UI" },
+
+      { name: "Node.js", icon: "nodejs", category: "Backend" },
+      { name: "PostgreSQL", icon: "postgresql", category: "Backend" },
+      { name: "Supabase", icon: "supabase", category: "Backend" },
+      { name: "MongoDB", icon: "mongodb", category: "Backend" },
+      { name: "Express.js", icon: "express", category: "Backend" },
+
+      { name: "Linux", icon: "linux", category: "OS & DevOps" },
+      { name: "Docker", icon: "docker", category: "DevOps & Containers" },
+      { name: "GitHub", icon: "github", category: "Version Control" },
+      { name: "VS Code", icon: "visual-studio-code", category: "Developer Tools" },
+      { name: "Vercel", icon: "vercel", category: "Deployment" },
+      { name: "Cloudflare", icon: "cloudflare", category: "Infrastructure" },
+
+      { name: "ChatGPT", icon: "openai", category: "AI Tooling" },
+      { name: "Claude", icon: "claude", category: "AI Tooling" },
+      { name: "Qwen AI", icon: "qwen", category: "AI Models" },
+      { name: "DeepSeek", icon: "deepseek", category: "AI Models" },
+      { name: "GitHub Copilot", icon: "github-copilot", category: "AI Assistant" },
+      { name: "Python", icon: "python", category: "Language & AI" },
+    ] as SkillMarqueeItem[],
+
+
+
+
+
+
     closing:
-      "I'm not a founder, a CEO, or a strategist hiding behind a title. I'm just a creator — someone who designs, builds, and thinks in equal measure, and uses that to walk products through every stage of their growth, from the first idea on a blank page to the moment a finished site goes live. Work that lifts what it belongs to, not just decorates it.",
+      "Engineering is not just about writing code; it's about crafting reliable systems, fluid user interactions, and meaningful digital products. From high-throughput APIs to pixel-perfect micro-animations, I build end-to-end applications that perform effortlessly under scale.",
   },
   contact: {
     id: "contact",
@@ -330,4 +404,7 @@ export const site = {
 
 export type Site = typeof site;
 export type Project = (typeof site.projects.items)[number];
-export type Service = (typeof site.services.items)[number];
+export type Experience = (typeof site.experience.items)[number];
+export type SkillCategory = SkillMarqueeItem;
+
+
