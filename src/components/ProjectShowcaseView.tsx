@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -8,6 +8,7 @@ import { ProjectItem } from "@/data/site";
 import { Header } from "./Header";
 import { Contact } from "./Contact";
 import { TechIcon } from "./TechIcon";
+import { AccordionGallery } from "./AccordionGallery";
 
 type Props = {
   project: ProjectItem;
@@ -64,6 +65,8 @@ function applyTheme(theme: ThemeConfig) {
 }
 
 export function ProjectShowcaseView({ project }: Props) {
+  const [viewMode, setViewMode] = useState<"accordion" | "stack">("accordion");
+
   useEffect(() => {
     // Set light theme immediately on mount (white at top)
     applyTheme(lightTheme);
@@ -98,6 +101,12 @@ export function ProjectShowcaseView({ project }: Props) {
     elements.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
   }, []);
+
+  const accordionItems = project.gallery.map((imgSrc, idx) => ({
+    image: imgSrc,
+    label: project.features?.[idx] || `${project.title} — Preview ${idx + 1}`,
+    description: project.subtitle,
+  }));
 
   return (
     <div className="min-h-screen">
@@ -182,36 +191,81 @@ export function ProjectShowcaseView({ project }: Props) {
           </div>
         </section>
 
-        {/* ── Gallery (scrolls to white) ── */}
+        {/* ── Gallery (Interactive Accordion & Lightbox Preview) ── */}
         <section id="sc-gallery" className="py-20 md:py-32">
           <div className="container">
-            <div className="mb-10">
-              <h2 className="font-display text-3xl text-fg sm:text-4xl md:text-5xl uppercase tracking-tight">
-                Project Preview
-              </h2>
+            <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between border-b border-line pb-6">
+              <div>
+                <span className="block text-xs uppercase tracking-[0.2em] text-fg-subtle mb-1">
+                  Visual Assets
+                </span>
+                <h2 className="font-display text-3xl text-fg sm:text-4xl md:text-5xl uppercase tracking-tight">
+                  Project Gallery
+                </h2>
+              </div>
+
+              {/* View Toggle Buttons */}
+              <div className="flex items-center gap-2 rounded-full border border-line p-1 bg-bg-elevated/50 backdrop-blur-sm self-start sm:self-auto">
+                <button
+                  onClick={() => setViewMode("accordion")}
+                  className={`flex items-center gap-1.5 rounded-full px-4 py-1.5 text-xs font-medium uppercase tracking-wider transition-all ${
+                    viewMode === "accordion"
+                      ? "bg-fg text-bg shadow-md"
+                      : "text-fg-muted hover:text-fg"
+                  }`}
+                >
+                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                  <span>Interactive Accordion</span>
+                </button>
+                <button
+                  onClick={() => setViewMode("stack")}
+                  className={`flex items-center gap-1.5 rounded-full px-4 py-1.5 text-xs font-medium uppercase tracking-wider transition-all ${
+                    viewMode === "stack"
+                      ? "bg-fg text-bg shadow-md"
+                      : "text-fg-muted hover:text-fg"
+                  }`}
+                >
+                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                  </svg>
+                  <span>Full Stack</span>
+                </button>
+              </div>
             </div>
 
-            <div className="flex flex-col gap-16 md:gap-28">
-              {project.gallery.map((imgSrc, idx) => (
-                <motion.div
-                  key={idx}
-                  className="relative aspect-[16/10] w-full overflow-hidden border border-line shadow-xl"
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-10% 0px" }}
-                  transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
-                >
-                  <Image
-                    src={imgSrc}
-                    alt={`${project.title} Screenshot ${idx + 1}`}
-                    fill
-                    sizes="(max-width: 1200px) 100vw, 1200px"
-                    className="object-cover"
-                    loading={idx === 0 ? "eager" : "lazy"}
-                  />
-                </motion.div>
-              ))}
-            </div>
+            {viewMode === "accordion" ? (
+              <AccordionGallery
+                items={accordionItems}
+                defaultIndex={0}
+                expandRatio={0.52}
+                trigger="hover"
+                showLightbox={true}
+              />
+            ) : (
+              <div className="flex flex-col gap-16 md:gap-28">
+                {project.gallery.map((imgSrc, idx) => (
+                  <motion.div
+                    key={idx}
+                    className="relative aspect-[16/10] w-full overflow-hidden rounded-xl border border-line shadow-xl group cursor-pointer"
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-10% 0px" }}
+                    transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+                  >
+                    <Image
+                      src={imgSrc}
+                      alt={`${project.title} Screenshot ${idx + 1}`}
+                      fill
+                      sizes="(max-width: 1200px) 100vw, 1200px"
+                      className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                      loading={idx === 0 ? "eager" : "lazy"}
+                    />
+                  </motion.div>
+                ))}
+              </div>
+            )}
           </div>
         </section>
 
