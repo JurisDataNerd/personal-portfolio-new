@@ -22,10 +22,12 @@ function Band({
   isMobile = false,
   frontImage = "/images/fauzan-06.png",
   backImage = "/images/belakang-06.png",
+  inView = false,
 }: {
   isMobile?: boolean;
   frontImage?: string;
   backImage?: string;
+  inView?: boolean;
 }) {
   const band = useRef<any>(null);
   const fixed = useRef<any>(null);
@@ -45,11 +47,39 @@ function Band({
     type: "dynamic" as const,
     canSleep: true,
     colliders: false as const,
-    angularDamping: 2,
-    linearDamping: 2,
+    angularDamping: 3,
+    linearDamping: 3,
   };
 
   const [frontTex, backTex] = useTexture([frontImage, backImage]);
+
+  // Scroll velocity tracking & entry drop logic
+  const scrollVelocity = useRef(0);
+  const prevInView = useRef(false);
+
+  useEffect(() => {
+    let lastY = window.scrollY;
+    const handleScroll = () => {
+      const currentY = window.scrollY;
+      const vel = currentY - lastY;
+      scrollVelocity.current = vel;
+      lastY = currentY;
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Trigger elegant, subtle falling/drop animation when lanyard enters section viewport
+  useEffect(() => {
+    if (inView && !prevInView.current) {
+      if (card.current) {
+        [card, j1, j2, j3].forEach((ref) => ref.current?.wakeUp());
+        card.current.applyImpulse({ x: 0.15, y: -0.8, z: 0.1 }, true);
+        card.current.applyTorqueImpulse({ x: 0.02, y: 0.05, z: -0.08 }, true);
+      }
+    }
+    prevInView.current = inView;
+  }, [inView]);
 
   // Deep Navy Blue (#172D68) Texture with Single Upright "⚛  Medskill" Text
   const lanyardTexture = useMemo(() => {
@@ -133,6 +163,25 @@ function Band({
         y: vec.y - dragged.y,
         z: vec.z - dragged.z,
       });
+    }
+
+    // Subtle & elegant dangle response to page scroll velocity
+    if (card.current && !dragged) {
+      const vel = scrollVelocity.current;
+      if (Math.abs(vel) > 0.1) {
+        [card, j1, j2, j3].forEach((ref) => ref.current?.wakeUp());
+
+        // Clamp scroll speed to prevent extreme forces
+        const clampedVel = Math.min(Math.max(vel, -12), 12);
+        const impulseX = clampedVel * 0.0025;
+        const impulseY = -Math.abs(clampedVel) * 0.0012;
+        const torqueZ = -clampedVel * 0.001;
+
+        card.current.applyImpulse({ x: impulseX, y: impulseY, z: 0 }, true);
+        card.current.applyTorqueImpulse({ x: 0, y: 0, z: torqueZ }, true);
+
+        scrollVelocity.current *= 0.82;
+      }
     }
 
     if (fixed.current && j1.current && j2.current && j3.current && card.current && band.current) {
@@ -266,6 +315,8 @@ export function Lanyard({
 }) {
   const [isMobile, setIsMobile] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [inView, setInView] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -275,10 +326,22 @@ export function Lanyard({
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  useEffect(() => {
+    if (!containerRef.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setInView(entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+    observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, [mounted]);
+
   if (!mounted) return null;
 
   return (
-    <div className="relative h-[900px] w-full pointer-events-auto overflow-visible">
+    <div ref={containerRef} className="relative h-[900px] w-full pointer-events-auto overflow-visible">
       <Canvas
         camera={{ position: [0, -1.2, 23], fov: 27 }}
         dpr={[1, isMobile ? 1.5 : 2]}
@@ -287,7 +350,7 @@ export function Lanyard({
       >
         <ambientLight intensity={1.6} />
         <Physics gravity={[0, -25, 0]} timeStep={isMobile ? 1 / 30 : 1 / 60}>
-          <Band isMobile={isMobile} frontImage={frontImage} backImage={backImage} />
+          <Band isMobile={isMobile} frontImage={frontImage} backImage={backImage} inView={inView} />
         </Physics>
 
         <Environment blur={0.75}>
@@ -317,3 +380,4 @@ export function Lanyard({
     </div>
   );
 }
+

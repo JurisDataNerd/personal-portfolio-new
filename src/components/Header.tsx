@@ -6,13 +6,30 @@ import { site } from "@/data/site";
 
 export function Header() {
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [isNearFooter, setIsNearFooter] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const checkNearFooter = () => {
+      const contactEl = document.getElementById("contact");
+      if (contactEl) {
+        const rect = contactEl.getBoundingClientRect();
+        // Darken header when approaching or entering the contact / footer section
+        setIsNearFooter(rect.top <= window.innerHeight);
+      } else {
+        const scrolledToBottom =
+          window.innerHeight + window.scrollY >=
+          document.documentElement.scrollHeight - 600;
+        setIsNearFooter(scrolledToBottom);
+      }
+    };
+
+    checkNearFooter();
+    window.addEventListener("scroll", checkNearFooter, { passive: true });
+    window.addEventListener("resize", checkNearFooter, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", checkNearFooter);
+      window.removeEventListener("resize", checkNearFooter);
+    };
   }, []);
 
   useEffect(() => {
@@ -27,8 +44,9 @@ export function Header() {
   return (
     <>
       <header
-        className={`fixed inset-x-0 top-0 z-40 transition-colors duration-300 ${scrolled || open ? "bg-[#0e0e0e]/80 backdrop-blur-md" : "bg-transparent"
-          }`}
+        className={`fixed inset-x-0 top-0 z-40 transition-colors duration-500 ${
+          isNearFooter || open ? "bg-[#0e0e0e]/80 backdrop-blur-md" : "bg-transparent"
+        }`}
       >
         <div className="container flex items-center justify-between py-4 md:py-5">
           <a
