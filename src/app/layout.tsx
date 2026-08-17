@@ -5,6 +5,8 @@ import { site } from "@/data/site";
 import { PageTransition } from "@/components/PageTransition";
 import { CustomCursor } from "@/components/CustomCursor";
 import { ScrollProgress } from "@/components/ScrollProgress";
+import { PrintPortfolio } from "@/components/PrintPortfolio";
+import { PrintController } from "@/components/PrintController";
 
 const display = Bebas_Neue({
   weight: "400",
@@ -48,7 +50,9 @@ export default function RootLayout({
       <body className="min-h-full bg-bg font-body text-fg">
         <PageTransition />
         <CustomCursor />
+        <PrintController />
         {children}
+        <PrintPortfolio />
         <ScrollProgress />
       </body>
     </html>

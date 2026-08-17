@@ -236,3 +236,67 @@ img {
     animation-delay: 0s !important;
   }
 }
+
+/* ─── Print / PDF Document Rules (Ctrl + P Triggered) ─── */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 8mm 10mm 10mm 10mm;
+  }
+
+  html,
+  body {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    font-size: 10pt !important;
+    line-height: 1.45 !important;
+    overflow: visible !important;
+    height: auto !important;
+    min-height: auto !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Completely hide all screen web elements */
+  header,
+  main,
+  footer,
+  #mobile-menu,
+  .curtain,
+  .scroll-progress,
+  #cursor,
+  [aria-hidden="true"],
+  nav {
+    display: none !important;
+  }
+
+  /* Display the dedicated print dossier */
+  #print-portfolio-document {
+    display: block !important;
+    width: 100% !important;
+    background: #ffffff !important;
+  }
+
+  /* Page break rules for pristine A4 formatting */
+  .print-page-break-before {
+    break-before: page !important;
+    page-break-before: always !important;
+  }
+
+  .print-avoid-break,
+  .print-project-card {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  a {
+    text-decoration: none !important;
+    color: inherit !important;
+  }
+
+  /* Ensure background colors and borders render in print */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
