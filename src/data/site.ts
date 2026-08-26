@@ -334,7 +334,7 @@ export const site = {
           "Final pledge mechanic that asks players for a tangible environmental commitment",
           "Project awarded Top 10 Finalist and Special Jury Recognition at QS Impact Youth Summit 2025",
         ],
-        liveUrl: "https://www.youtube.com/watch?v=P49iPaS8Phw",
+        liveUrl: "https://seeds-of-hope-eight.vercel.app/",
         nextProject: {
           title: "Medskill Indonesia LMS",
           year: "2025",
