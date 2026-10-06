@@ -55,7 +55,7 @@ export interface SkillMarqueeItem {
 }
 
 export const site = {
-  url: process.env.NEXT_PUBLIC_SITE_URL || "https://fauzanarisanto.vercel.app",
+  url: process.env.NEXT_PUBLIC_SITE_URL || "https://www.fauzanarisanto.my.id",
   name: "Fauzan Arisanto",
   shortName: "Fauzan",
   lastName: "Arisanto",
