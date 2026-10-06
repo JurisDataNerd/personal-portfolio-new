@@ -22,16 +22,71 @@ const body = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: `${site.name} | ${site.title}`,
-  description: site.description,
-  openGraph: {
-    title: `${site.name} | ${site.title}`,
-    description: site.description,
-    type: "website",
-    locale: "en_US",
-    siteName: site.name,
+  metadataBase: new URL(site.url),
+  title: {
+    default: `${site.name} — ${site.title}`,
+    template: `%s | ${site.name}`,
   },
-  robots: { index: true, follow: true },
+  description: site.description,
+  applicationName: site.name,
+  authors: [{ name: site.name, url: site.url }],
+  generator: "Next.js",
+  keywords: [
+    "Fauzan Arisanto",
+    "Fullstack Developer",
+    "Frontend Developer",
+    "Backend Developer",
+    "Web Developer Indonesia",
+    "Software Engineer",
+    "React",
+    "Next.js",
+    "TypeScript",
+    "Node.js",
+    "Medskill",
+    "Portfolio",
+  ],
+  creator: site.name,
+  publisher: site.name,
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: `${site.name} — ${site.title}`,
+    description: site.description,
+    url: site.url,
+    siteName: site.name,
+    images: [
+      {
+        url: "/images/fauzan-06.png",
+        width: 1200,
+        height: 630,
+        alt: `${site.name} — ${site.title}`,
+      },
+    ],
+    locale: "id_ID",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${site.name} — ${site.title}`,
+    description: site.description,
+    creator: "@darkprince_oo",
+    images: ["/images/fauzan-06.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  verification: {
+    google: "google67e1a82ec83ab410",
+  },
 };
 
 export const viewport: Viewport = {
@@ -45,9 +100,43 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": `${site.url}/#person`,
+        name: site.name,
+        jobTitle: site.title,
+        url: site.url,
+        sameAs: site.socials.map((s) => s.href),
+        image: `${site.url}/images/fauzan-06.png`,
+        description: site.description,
+        address: {
+          "@type": "PostalAddress",
+          addressCountry: "ID",
+        },
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${site.url}/#website`,
+        url: site.url,
+        name: `${site.name} Portfolio`,
+        description: site.description,
+        publisher: {
+          "@id": `${site.url}/#person`,
+        },
+      },
+    ],
+  };
+
   return (
     <html lang="en" className={`${display.variable} ${body.variable} h-full antialiased`}>
       <body className="min-h-full bg-bg font-body text-fg">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <PageTransition />
         <CustomCursor />
         <PrintController />

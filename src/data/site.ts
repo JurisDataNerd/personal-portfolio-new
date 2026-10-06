@@ -47,6 +47,7 @@ export interface SkillMarqueeItem {
 }
 
 export const site = {
+  url: process.env.NEXT_PUBLIC_SITE_URL || "https://www.fauzanarisanto.me",
   name: "Fauzan Arisanto",
   shortName: "Fauzan",
   lastName: "Arisanto",
