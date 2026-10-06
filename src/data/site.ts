@@ -40,6 +40,14 @@ export interface ExperienceItem {
   tags: string[];
 }
 
+export interface QuoteItem {
+  id: string;
+  quote: string;
+  author: string;
+  role: string;
+  category: string;
+}
+
 export interface SkillMarqueeItem {
   name: string;
   icon: string;
@@ -348,6 +356,78 @@ export const site = {
   quote: {
     text: "The web is loud, and most brands just blend into it. I work across design, frontend, and backend all at once — building digital experiences that feel as sharp as they look. Nothing gets handed off between teams or lost in translation, because I build every layer myself. That's how the identity we create together actually holds up once it's live. If your product deserves to be seen, let's make sure people can't look away.",
   },
+  quotes: [
+    {
+      id: "jensen-1",
+      quote: "Greatness is not intelligence. Greatness comes from character, and character isn't formed out of smart people — it is formed out of people who suffered.",
+      author: "Jensen Huang",
+      role: "Founder & CEO, NVIDIA",
+      category: "Mindset & Resilience",
+    },
+    {
+      id: "jobs-1",
+      quote: "Design is not just what it looks like and feels like. Design is how it works.",
+      author: "Steve Jobs",
+      role: "Co-founder, Apple",
+      category: "Design & Craft",
+    },
+    {
+      id: "torvalds-1",
+      quote: "Talk is cheap. Show me the code.",
+      author: "Linus Torvalds",
+      role: "Creator of Linux & Git",
+      category: "Engineering Truth",
+    },
+    {
+      id: "huang-2",
+      quote: "Software is eating the world, but AI is eating software. Run, don't walk. Either you are running for food, or you are running from becoming food.",
+      author: "Jensen Huang",
+      role: "Founder & CEO, NVIDIA",
+      category: "Velocity & AI Era",
+    },
+    {
+      id: "graham-1",
+      quote: "Make something people want. Relentlessly resourceful builders win because they never surrender when things seem impossible.",
+      author: "Paul Graham",
+      role: "Co-founder, Y Combinator",
+      category: "Product Philosophy",
+    },
+    {
+      id: "jobs-2",
+      quote: "The people who are crazy enough to think they can change the world are the ones who do.",
+      author: "Steve Jobs",
+      role: "Co-founder, Apple",
+      category: "Conviction",
+    },
+    {
+      id: "kay-1",
+      quote: "The best way to predict the future is to invent it. People who are really serious about software should make their own hardware.",
+      author: "Alan Kay",
+      role: "Computer Science Pioneer",
+      category: "Innovation",
+    },
+    {
+      id: "ive-1",
+      quote: "Simplicity is not the lack of clutter. Simplicity is essentially describing the purpose and place of an object and product.",
+      author: "Jony Ive",
+      role: "Former Chief Design Officer, Apple",
+      category: "Minimalist Craft",
+    },
+    {
+      id: "naval-1",
+      quote: "Code and media are permissionless leverage. You can create software that works for you while you sleep.",
+      author: "Naval Ravikant",
+      role: "Entrepreneur & Investor",
+      category: "Leverage & Code",
+    },
+    {
+      id: "nadella-1",
+      quote: "Our industry does not respect tradition — it only respects innovation. Don't be a know-it-all, be a learn-it-all.",
+      author: "Satya Nadella",
+      role: "CEO, Microsoft",
+      category: "Continuous Learning",
+    },
+  ] as QuoteItem[],
   skills: {
     title: "Skills & Technologies",
     subtitle: "Technologies & Engineering Stack",
