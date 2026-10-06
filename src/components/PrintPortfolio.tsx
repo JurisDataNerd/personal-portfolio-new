@@ -292,6 +292,7 @@ export function PrintPortfolio() {
                       src={project.image}
                       alt={project.imageAlt || project.title}
                       fill
+                      sizes="(max-width: 768px) 100vw, 300px"
                       unoptimized
                       className="w-full h-full object-cover"
                     />

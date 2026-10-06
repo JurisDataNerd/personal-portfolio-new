@@ -71,6 +71,7 @@ export function Experience() {
                               src={item.logo}
                               alt={`${item.company} logo`}
                               fill
+                              sizes="(max-width: 640px) 40px, 48px"
                               className="object-contain p-0.5"
                             />
                           </div>
