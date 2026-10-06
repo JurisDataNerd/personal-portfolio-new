@@ -18,6 +18,21 @@ import * as THREE from "three";
 // Extend Three.js JSX elements for MeshLine
 extend({ MeshLineGeometry, MeshLineMaterial });
 
+// Suppress known third-party library deprecation noise from fiber and rapier internals
+if (typeof window !== "undefined") {
+  const originalWarn = console.warn;
+  console.warn = (...args: unknown[]) => {
+    const text = typeof args[0] === "string" ? args[0] : "";
+    if (
+      text.includes("THREE.Clock: This module has been deprecated") ||
+      text.includes("deprecated parameters for the initialization function")
+    ) {
+      return;
+    }
+    originalWarn(...args);
+  };
+}
+
 function Band({
   isMobile = false,
   frontImage = "/images/fauzan-06.png",
