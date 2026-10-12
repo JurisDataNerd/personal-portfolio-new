@@ -54,6 +54,18 @@ export interface SkillMarqueeItem {
   category: string;
 }
 
+export interface FeaturedInItem {
+  id: string;
+  title: string;
+  publisher: string;
+  date: string;
+  category: string;
+  url: string;
+  image: string;
+  imageAlt: string;
+  summary: string;
+}
+
 export const site = {
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://www.fauzanarisanto.my.id",
   name: "Fauzan Arisanto",
@@ -63,9 +75,7 @@ export const site = {
   description:
     "Fauzan Arisanto is a fullstack web developer designing and building digital experiences with a focus on craft, motion, and interaction.",
   location: "based in indonesia",
-  openToWork: false,
   email: "arisantofauzan@gmail.com",
-  phone: "+62 821 9609 1319",
   socials: [
     { label: "GitHub", href: "https://github.com/JurisDataNerd" },
     { label: "LinkedIn", href: "https://www.linkedin.com/in/fauzanarisanto/" },
@@ -353,6 +363,60 @@ export const site = {
       },
     ] as ProjectItem[],
   },
+  featuredIn: {
+    title: "Featured In",
+    tag: "Press & Mentions",
+    items: [
+      {
+        id: "unu-medskill-leadership",
+        title: "From Internship to Leadership: Entrusted to Lead Technology Development at a Medical Startup",
+        publisher: "UNU Jogja Press",
+        date: "August 2026",
+        category: "Leadership & MedTech",
+        url: "https://unu-jogja.ac.id/en/news/berawal-dari-magang-mahasiswa-informatika-unu",
+        image: "/images/press/unu-magang-medskill.webp",
+        imageAlt: "Fauzan Arisanto featured in UNU Jogja News regarding MedSkill leadership",
+        summary:
+          "Official coverage detailing the progression from software engineering intern to heading tech development and platform architecture at MedSkill LMS.",
+      },
+      {
+        id: "unu-qs-impact-challenge",
+        title: "Supporting Indonesia Emas: Earns Special Jury Recognition at QS Impact Challenge with Educational Game",
+        publisher: "UNU Jogja Press",
+        date: "July 2026",
+        category: "Global Challenge · SDG 12",
+        url: "https://unu-jogja.ac.id/en/news/supporting-indonesia-emas-vision-unu-jogja-earns",
+        image: "/images/press/unu-qs-impact.webp",
+        imageAlt: "SANTRI educational game recognition at QS Impact Skills Challenge",
+        summary:
+          "Honored with Special Jury Recognition at the international QS Impact Skills Challenge 2026 for developing SANTRI: The Seeds of Hope, a gamified sustainability simulation.",
+      },
+      {
+        id: "unu-informatics-studio",
+        title: "UNU Jogja Informatics Students Showcase Digital Innovation Through Informatics Studio 2.0",
+        publisher: "UNU Jogja Press",
+        date: "July 2025",
+        category: "Exhibition · 1st Place",
+        url: "https://unu-jogja.ac.id/en/news/unu-jogja-informatics-students-showcase-digital-innovation",
+        image: "/images/press/unu-informatics-studio.webp",
+        imageAlt: "Informatics Studio 2.0 digital innovation exhibition featuring SISEMOK",
+        summary:
+          "Showcase of advanced student-led digital software and web engineering, spotlighting the 1st place award-winning SISEMOK smoking cessation platform.",
+      },
+      {
+        id: "unu-labsos-deployment",
+        title: "UNU Jogja Sends 125 Students to 32 Labsos Partners, Promoting Collaboration and Real-World Impact",
+        publisher: "UNU Jogja Press",
+        date: "February 2026",
+        category: "Field Action & Community Impact",
+        url: "https://unu-jogja.ac.id/id/news/unu-jogja-lepas-125-mahasiswa-ke-32-mitra-labsos",
+        image: "/images/press/unu-labsos-pelepasan.webp",
+        imageAlt: "UNU Jogja Social Laboratory deployment to 32 partners",
+        summary:
+          "Institutional deployment mobilizing tech and social innovation across regional partners, fostering collaborative real-world problem solving.",
+      },
+    ] as FeaturedInItem[],
+  },
   quote: {
     text: "The web is loud, and most brands just blend into it. I work across design, frontend, and backend all at once — building digital experiences that feel as sharp as they look. Nothing gets handed off between teams or lost in translation, because I build every layer myself. That's how the identity we create together actually holds up once it's live. If your product deserves to be seen, let's make sure people can't look away.",
   },
@@ -487,5 +551,6 @@ export type Site = typeof site;
 export type Project = (typeof site.projects.items)[number];
 export type Experience = (typeof site.experience.items)[number];
 export type SkillCategory = SkillMarqueeItem;
+export type FeaturedIn = FeaturedInItem;
 
 

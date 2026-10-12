@@ -79,15 +79,6 @@ export function Contact() {
               </motion.span>
             )}
           </div>
-
-          {site.phone ? (
-            <a
-              href={`tel:${String(site.phone).replace(/\s/g, "")}`}
-              className="mt-4 block text-base uppercase tracking-[0.12em] text-fg-muted transition-colors hover:text-fg sm:text-lg"
-            >
-              {site.phone}
-            </a>
-          ) : null}
         </motion.div>
 
         <footer className="flex flex-col gap-8 border-t border-line pt-8 md:flex-row md:items-end md:justify-between">
