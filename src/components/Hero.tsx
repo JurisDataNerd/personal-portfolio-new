@@ -47,19 +47,6 @@ export function Hero() {
           {site.location}
         </motion.p>
 
-        {site.openToWork && (
-          <motion.div
-            className="flex items-center gap-2"
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7, duration: 0.5 }}
-          >
-            <span className="pulse-dot" aria-hidden />
-            <span className="text-xs uppercase tracking-[0.14em] text-fg sm:text-sm font-medium">
-              Open to work
-            </span>
-          </motion.div>
-        )}
       </div>
     </section>
   );

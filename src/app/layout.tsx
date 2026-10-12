@@ -140,8 +140,8 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className={`${display.variable} ${body.variable} h-full antialiased`}>
-      <body className="min-h-full bg-bg font-body text-fg">
+    <html lang="en" suppressHydrationWarning className={`${display.variable} ${body.variable} h-full antialiased`}>
+      <body suppressHydrationWarning className="min-h-full bg-bg font-body text-fg">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

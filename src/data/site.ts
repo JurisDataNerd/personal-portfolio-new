@@ -63,7 +63,7 @@ export const site = {
   description:
     "Fauzan Arisanto is a fullstack web developer designing and building digital experiences with a focus on craft, motion, and interaction.",
   location: "based in indonesia",
-  openToWork: true,
+  openToWork: false,
   email: "arisantofauzan@gmail.com",
   phone: "+62 821 9609 1319",
   socials: [
